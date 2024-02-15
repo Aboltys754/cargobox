@@ -1,0 +1,47 @@
+{
+  "name": "cargobox",
+  "version": "0.0.1",
+  "description": "cargobox calculation",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "build": "npx tsc",
+    "lint": "eslint ./src",
+    "lint:fix": "eslint ./src --fix",
+    "db:init": "ts-node ./src/libs/db.init.ts",
+    "db:drop": "ts-node ./src/libs/db.init.ts --drop",
+    "db:load": "ts-node ./src/libs/db.load.ts --clean",
+    "db:kladr": "ts-node ./src/libs/db.kladr.toExcel.ts"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/GeoS74/cargobox.git"
+  },
+  "author": "GeoS",
+  "license": "ISC",
+  "devDependencies": {
+    "@types/koa": "^2.13.12",
+    "@types/koa-router": "^7.4.8",
+    "@types/node": "^20.10.6",
+    "@types/pg": "^8.10.9",
+    "@typescript-eslint/eslint-plugin": "^6.18.0",
+    "@typescript-eslint/parser": "^6.18.0",
+    "eslint": "^8.56.0",
+    "eslint-config-airbnb-typescript": "^17.1.0",
+    "ts-node": "^10.9.2"
+  },
+  "dependencies": {
+    "@types/node-7z": "^2.1.8",
+    "7zip-bin": "^5.2.0",
+    "dbffile": "^1.9.3",
+    "koa": "^2.15.0",
+    "koa-router": "^12.0.1",
+    "log4js": "^6.9.1",
+    "node-7z": "^3.0.0",
+    "pg": "^8.11.3",
+    "pg-types": "^4.0.1",
+    "ts": "^0.2.2",
+    "typescript": "^5.3.3",
+    "xlsx": "^0.18.5"
+  }
+}
