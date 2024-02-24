@@ -3,6 +3,56 @@ const grantType = 'client_credentials'
 const clientId = 'EMscd6r9JnFiQ3bLoyjJY6eM78JrJceI'
 const clientSecret = 'PjLZkKBHEiLK3YsjtNrt3TGNG0ahs3kG'
 
+let access_token = null
+let token_type = null
+let expires_in = null
+let scope = null
+let jti = null
+
+
+async function set_access_json() {
+    const tokens = await fetch(`${urlGetToken}&grant_type=${grantType}&client_id=${clientId}&client_secret=${clientSecret}`, {
+        method: 'POST',
+    })
+
+    if (tokens.ok) {
+        const res = await tokens.json()
+        .then((access_json) => {
+            access_token = access_json.access_token,
+            token_type = access_json.token_type,
+            expires_in = access_json.expires_in,
+            scope = access_json.scope,
+            jti = access_json.jti
+            console.log(access_token, 1)
+        })
+        .then(console.log(access_token), 2)
+        .then(downloadDeliverypoints())
+    }
+    else {
+        console.log(tokens.status, 3)
+    }            
+}
+
+
+async function downloadDeliverypoints() {
+    const deliv = await fetch(`https://api.edu.cdek.ru/v2/deliverypoints`, {
+      method: 'GET',
+      headers: {
+        Authorization: `Bearer ${this.access_token}`
+      }
+    })
+    if (deliv.ok) {
+        const res = await deliv.json().then((r) => console.log(r))
+        console.log(res, 5)
+    }
+    else {
+        console.log(deliv.status, 4)
+    }
+    
+  }
+
+  set_access_json()
+
 // ответ по офисам полный
 // {
 //     "code": "CHEL11",
